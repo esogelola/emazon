@@ -1,0 +1,30 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-emazon-dev-121004-authRole",
+      "UnauthRoleArn": "arn:aws:iam::616480003306:role/amplify-emazon-dev-121004-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::616480003306:role/amplify-emazon-dev-121004-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-emazon-dev-121004-deployment",
+      "UnauthRoleName": "amplify-emazon-dev-121004-unauthRole",
+      "StackName": "amplify-emazon-dev-121004",
+      "StackId": "arn:aws:cloudformation:us-east-2:616480003306:stack/amplify-emazon-dev-121004/2e153940-3b2e-11ec-892c-0a3f8f42c43c",
+      "AmplifyAppId": "d18l4ngipcru6x"
+    },
+    "categories": {
+      "auth": {
+        "emazonc389a055": {}
+      },
+      "function": {
+        "processPayment": {
+          "deploymentBucketName": "amplify-emazon-dev-121004-deployment",
+          "s3Key": "amplify-builds/processPayment-315941376e337a76436e-build.zip"
+        },
+        "createOrder": {
+          "deploymentBucketName": "amplify-emazon-dev-121004-deployment",
+          "s3Key": "amplify-builds/createOrder-36325456454c30714d6e-build.zip"
+        }
+      }
+    }
+  }
+}
