@@ -4,15 +4,8 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-function FilterByButton() {
+function FilterByButton({ filterBy, handleChange }) {
   // Can move this higher up in the architecture
-  const filterBy = [
-    "Featured",
-    "Price: Low to High",
-    "Price: High to Low",
-    "Avg. Customer Review",
-    "Newest Arrivals",
-  ];
 
   return (
     <Menu as="div" className="relative inline-block text-left">
@@ -46,15 +39,15 @@ function FilterByButton() {
               return (
                 <Menu.Item>
                   {({ active }) => (
-                    <a
-                      href="#"
+                    <button
+                      onClick={handleChange}
                       className={classNames(
                         active ? "bg-gray-100 text-gray-900" : "text-gray-700",
                         "block px-4 py-2 text-sm"
                       )}
                     >
                       {data}
-                    </a>
+                    </button>
                   )}
                 </Menu.Item>
               );
