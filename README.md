@@ -1,6 +1,6 @@
 ## EMAZON
 
-An e-commerce website that allows user's to create (if authorized) , view and buy any product listed on the site, built with React, Redux, JavaScript, and TailwindCSS.
+An e-commerce website that allows user's to create (if authorized) , view and buy (with an actual payment gateway) any product listed on the site, built with React, Redux, Stripe, JavaScript, and TailwindCSS.
 
 ## Project Status
 
