@@ -6,7 +6,7 @@ function Checkout() {
   const stripePromise = loadStripe(
     "pk_test_51Jr7QoBkc0dVZiAVdRWPzzQbEt3KCmIdZxGhoLQB8kFsXjovS0gBZiwuUtlmTjrvMYnFS5MegK7foyzU65KPlCTr00exMjZsAh"
   );
-  return <div></div>;
+  return <div>Checkout</div>;
 }
 
 export default Checkout;

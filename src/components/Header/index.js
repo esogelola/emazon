@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function index() {
   return (
@@ -27,7 +28,7 @@ function index() {
               <li>
                 <a
                   className="inline-block no-underline hover:text-black hover:underline py-2 px-4"
-                  href="#"
+                  href="/"
                 >
                   Shop
                 </a>
@@ -35,7 +36,7 @@ function index() {
               <li>
                 <a
                   className="inline-block no-underline hover:text-black hover:underline py-2 px-4"
-                  href="#"
+                  href="#about"
                 >
                   About
                 </a>
@@ -47,7 +48,7 @@ function index() {
         <div className="order-1 md:order-2">
           <a
             className="flex items-center tracking-wide no-underline hover:no-underline font-bold text-gray-800 text-xl "
-            href="#"
+            href="/"
           >
             EMAZON
           </a>
@@ -67,9 +68,9 @@ function index() {
             </svg>
           </a>
 
-          <a
+          <Link
             className="pl-3 inline-block no-underline hover:text-black"
-            href="#"
+            to="/cart"
           >
             <svg
               className="fill-current hover:text-black"
@@ -82,7 +83,7 @@ function index() {
               <circle cx="10.5" cy="18.5" r="1.5" />
               <circle cx="17.5" cy="18.5" r="1.5" />
             </svg>
-          </a>
+          </Link>
         </div>
       </div>
     </nav>
