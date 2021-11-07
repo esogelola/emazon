@@ -1,5 +1,8 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { applyMiddleware, createStore } from "redux";
+import thunk from "redux-thunk";
+import reducers from "./redux/reducers";
 
-export default configureStore({
-  reducer: {},
-});
+//thunk middleware is used to intercept actions so as to make API call before dispatching result to reducer
+const store = createStore(reducers, applyMiddleware(thunk));
+
+export default store;

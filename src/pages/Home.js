@@ -7,13 +7,12 @@ import ProductListItem from "../components/Product/index";
 function Home() {
   // Only get 8 products from api, when the user goes to view all grab all
   return (
-    <>
+    <section>
       <Hero />
       <ListToolbar />
       <section class="bg-white py-8">
         <div class="container mx-auto flex items-center flex-wrap pt-4 pb-12">
           {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((data, id) => {
-            console.log(id);
             return id < 8 ? (
               <ProductListItem key={id} />
             ) : (
@@ -24,7 +23,7 @@ function Home() {
           })}
         </div>
       </section>
-    </>
+    </section>
   );
 }
 
