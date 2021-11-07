@@ -13,7 +13,7 @@ export const removeItem = (id) => {
   };
 };
 //subtract qt action
-export const subtractQuantity = (id) => {
+export const subtractQuantity = (id, amount) => {
   return {
     type: "SUB_QUANTITY",
     id,
@@ -26,3 +26,8 @@ export const addQuantity = (id) => {
     id,
   };
 };
+export const clearCart = () => {
+  return {
+    type: "CLEAR_CART"
+  }
+}
