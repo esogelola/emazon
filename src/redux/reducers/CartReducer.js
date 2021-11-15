@@ -1,34 +1,83 @@
 const initialState = {
-  items: [],
-  addedItems: [],
-  total: 0,
+  cart: [],
+
+  total: 10,
 };
 export default function CartReducer(state = initialState, action) {
+  let cartItem = null;
+  let newCart = null;
+  let newTotal = 0;
+
   switch (action.type) {
     case "ADD_TO_CART":
-      let addedItem = state.items.find((item) => item.id === action.id);
-      //check if the action id exists in the addedItems
-      let existed_item = state.addedItems.find((item) => action.id === item.id);
+      let { id, price } = action.item;
+      cartItem = state.cart.find((item) => item.id === id);
 
-      if (existed_item) {
-        addedItem.quantity += 1;
+      if (cartItem) {
+        cartItem.quantity += 1;
         return {
           ...state,
-          total: state.total + addedItem.price,
+          total: state.total + price,
         };
       } else {
-        addedItem.quantity = 1;
-        //calculating the total
-        let newTotal = state.total + addedItem.price;
+        cartItem = action.item;
+        cartItem.quantity = 1;
 
         return {
           ...state,
-          addedItems: [...state.addedItems, addedItem],
+          cart: [...state.cart, cartItem],
+          total: state.total + price,
+        };
+      }
+
+    case "REMOVE_ITEM":
+      let itemToRemove = state.cart.find((item) => action.item.id === item.id);
+      newCart = state.cart.filter((item) => action.item.id !== item.id);
+      //calculating the total
+      newTotal = state.total - itemToRemove.price * itemToRemove.quantity;
+      console.log(itemToRemove);
+      return {
+        ...state,
+        cart: newCart,
+        total: newTotal,
+      };
+
+    case "SUB_QUANTITY":
+      cartItem = state.cart.find((item) => item.id === action.item.id);
+      if (cartItem.quantity === 1) {
+        newCart = state.cart.filter((item) => action.item.id !== item.id);
+        newTotal = state.total - cartItem.price * cartItem.quantity;
+
+        return {
+          ...state,
+          cart: newCart,
+          total: newTotal,
+        };
+      } else {
+        cartItem.quantity -= 1;
+        newTotal = state.total - cartItem.price;
+        return {
+          ...state,
+
           total: newTotal,
         };
       }
-    case: "REMOVE_ITEM":
-    
+
+    case "ADD_QUANTITY":
+      cartItem = state.cart.find((item) => item.id === action.item.id);
+      cartItem.quantity += 1;
+      newTotal = state.total + cartItem.price;
+      return {
+        ...state,
+
+        total: newTotal,
+      };
+
+    case "CHECKOUT_CART":
+      console.log(state);
+      return {
+        state,
+      };
 
     default:
       return state;

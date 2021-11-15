@@ -1,8 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Menu, Transition } from "@headlessui/react";
-
-function index() {
+// Redux
+import { useSelector } from "react-redux";
+function Header() {
+  const Cart = useSelector((state) => state.Cart);
   function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
   }
@@ -10,13 +12,14 @@ function index() {
     "Account Settings",
     "Your Orders",
     "Your Recommendations",
+
     "Sign Out",
   ];
 
   return (
-    <nav id="header" class="w-full z-30 top-0 py-1">
+    <nav id="header" className="w-full z-30 top-0 py-1">
       <div className="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 px-6 py-3">
-        <label htmlFor="menu-toggle" class="cursor-pointer md:hidden block">
+        <label htmlFor="menu-toggle" className="cursor-pointer md:hidden block">
           <svg
             className="fill-current text-gray-900"
             xmlns="http://www.w3.org/2000/svg"
@@ -135,9 +138,11 @@ function index() {
                 <circle cx="10.5" cy="18.5" r="1.5" />
                 <circle cx="17.5" cy="18.5" r="1.5" />
               </svg>
-              <span class="absolute top-0 right-100 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full">
-                5
-              </span>
+              {Cart.cart.length > 0 && (
+                <span className="absolute top-0 right-100 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full">
+                  {Cart.cart.length}
+                </span>
+              )}
             </span>
           </Link>
         </div>
@@ -146,4 +151,4 @@ function index() {
   );
 }
 
-export default index;
+export default Header;
