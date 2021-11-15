@@ -1,28 +1,40 @@
 //add cart action
-export const addToCart = (id) => {
+export const addToCart = (item) => {
   return {
     type: "ADD_TO_CART",
-    id,
+    item,
   };
 };
 //remove item action
-export const removeItem = (id) => {
+export const removeItem = (item) => {
   return {
     type: "REMOVE_ITEM",
-    id,
+    item,
   };
 };
 //subtract qt action
-export const subtractQuantity = (id) => {
+export const subtractQuantity = (item) => {
   return {
     type: "SUB_QUANTITY",
-    id,
+    item,
   };
 };
 //add qt action
-export const addQuantity = (id) => {
+export const addQuantity = (item) => {
   return {
     type: "ADD_QUANTITY",
-    id,
+    item,
+  };
+};
+export const clearCart = () => {
+  return {
+    type: "CLEAR_CART",
+  };
+};
+
+export const checkoutCart = (cart) => {
+  return {
+    type: "CHECKOUT_CART",
+    cart,
   };
 };

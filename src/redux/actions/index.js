@@ -1,3 +1,3 @@
 import { getAllPosts } from "./TestAction";
-
-export { getAllPosts };
+import { getAllProducts } from "./ProductAction";
+export { getAllPosts, getAllProducts };

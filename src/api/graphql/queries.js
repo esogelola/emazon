@@ -89,9 +89,6 @@ export const listProducts = /* GraphQL */ `
         seller
         featured
         price
-        orders {
-          nextToken
-        }
         createdAt
         updatedAt
       }

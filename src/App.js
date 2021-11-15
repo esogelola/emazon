@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { BrowserRouter as Router, Switch } from "react-router-dom";
 // Redux
 import { useDispatch, useSelector } from "react-redux";
-import { getAllPosts } from "./redux/actions";
+import { getAllProducts } from "./redux/actions";
 
 // Amplify
 import Amplify from "aws-amplify";
@@ -17,14 +17,15 @@ import { routes, RouteWithSubRoutes } from "./routes";
 // Amplify Configurations
 import awsExports from "./aws-exports";
 Amplify.configure(awsExports);
-function App() {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getAllPosts());
-  }, []);
 
-  const users = useSelector((state) => state.Test.users);
-  console.log("users", users);
+function App(props) {
+  const dispatch = useDispatch();
+  const { products } = useSelector((state) => state.Product);
+
+  useEffect(() => {
+    dispatch(getAllProducts());
+  }, [products]);
+
   return (
     <Router>
       <Header />

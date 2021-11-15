@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { API, graphqlOperation, Storage } from "aws-amplify";
+import { API, graphqlOperation, Storage, Auth } from "aws-amplify";
 import { AmplifyAuthenticator, AmplifySignOut } from "@aws-amplify/ui-react";
 import { createProduct } from "../api/graphql/mutations";
 import config from "../aws-exports";
+
 const {
   aws_user_files_s3_bucket_region: region,
   aws_user_files_s3_bucket: bucket,
@@ -21,11 +22,15 @@ function Admin() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
       if (!productDetails.title || !productDetails.price) return;
       await API.graphql(
         graphqlOperation(createProduct, { input: productDetails })
-      );
+      ).then((data) => {
+        console.log(data);
+      });
+
       setProductDetails({
         title: "",
         description: "",
@@ -34,9 +39,12 @@ function Admin() {
         price: "",
       });
     } catch (err) {
-      console.log("error creating todo:", err);
+      console.log("error creating producct:", err);
     }
   };
+  Auth.currentAuthenticatedUser().then((data) =>
+    console.log(data.signInUserSession.accessToken.payload["cognito:groups"])
+  );
   const handleImageUpload = async (e) => {
     e.preventDefault();
     // Can add video support later
@@ -59,6 +67,7 @@ function Admin() {
       console.log(err);
     }
   };
+
   // Break these components later
 
   return (
@@ -191,6 +200,7 @@ function Admin() {
                 <button
                   className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
                   type="submit"
+                  onClick={handleSubmit}
                 >
                   Submit
                 </button>

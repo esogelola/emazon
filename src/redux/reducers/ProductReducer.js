@@ -1,13 +1,13 @@
 const initialState = {
-  users: null,
+  products: [],
 };
 
 export default function BookReducer(state = initialState, action) {
   switch (action.type) {
-    case "DO_THIS":
+    case "GET_PRODUCTS":
       return {
         ...state,
-        users: action.payload,
+        products: action.payload,
       };
     default:
       return state;

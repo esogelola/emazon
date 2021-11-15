@@ -1,6 +1,7 @@
 ## EMAZON
 
 An e-commerce website that allows user's to create (if authorized) , view and buy (with an actual payment gateway) any product listed on the site, built with React, Redux, Stripe, JavaScript, and TailwindCSS.
+![alt text](./github/demo.JPG)
 
 ## Project Status
 
@@ -17,10 +18,6 @@ Clone down this repository. You will need `node` and `npm` installed globally on
 Installation:
 
 `npm install`
-
-To Run Test Suite:
-
-`npm test`
 
 To Start Server:
 
