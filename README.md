@@ -5,7 +5,7 @@ An e-commerce website that allows user's to create (if authorized) , view and bu
 
 ## Project Status
 
-This project is currently in development. Only the front-end of the application is complete, the back-end is currently being developed.
+This project is "complete", a lot of improvements such as a better Admin product CRUD, letting users properly view their orders and fixing checkout issues.
 
 ## Project Screen Shot(s)
 
