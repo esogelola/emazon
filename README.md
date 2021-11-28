@@ -5,8 +5,19 @@ An e-commerce website that allows user's to create (if authorized) , view and bu
 
 ## Project Status
 
-This project is "complete", a lot of improvements such as a better Admin product CRUD, letting users properly view their orders and fixing checkout issues.
+The project is live @ https://dev.d18l4ngipcru6x.amplifyapp.com/
+The project is currently in the MVP (Minimum Viable Product) State, a guide on how to utilize the site as a demo coming.
+Future updates:
 
+<ul>
+  <li>Better looking Admin Panel</li>
+  <li>User can view their orders, Admin can view all orders</li>
+  <li>User reviews on products</li>
+  <li>User wishlist on products</li>
+  <li>Persist cart state (maybe in database)</li>
+  <li>Save more user data</li>
+  <li>Product Company creation, allow certified "companies"  to upload their products.</li>
+</ul>
 ## Project Screen Shot(s)
 
 Screen shots coming soon.

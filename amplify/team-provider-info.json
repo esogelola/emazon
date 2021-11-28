@@ -18,11 +18,17 @@
       "function": {
         "processPayment": {
           "deploymentBucketName": "amplify-emazon-dev-121004-deployment",
-          "s3Key": "amplify-builds/processPayment-536850727961522b6f35-build.zip"
+          "s3Key": "amplify-builds/processPayment-4d764f68717975656646-build.zip"
         },
         "createOrder": {
           "deploymentBucketName": "amplify-emazon-dev-121004-deployment",
-          "s3Key": "amplify-builds/createOrder-5065424d4335556a3662-build.zip"
+          "s3Key": "amplify-builds/createOrder-5a425658696a6d724442-build.zip"
+        }
+      },
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "d18l4ngipcru6x",
+          "type": "manual"
         }
       }
     }
