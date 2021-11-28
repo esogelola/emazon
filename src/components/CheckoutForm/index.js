@@ -5,6 +5,7 @@ import {
   setOrderDetails,
   setErrors,
   checkoutCart,
+  clearCart,
 } from "../../redux/actions/CartAction";
 // Redux
 import { useSelector, useDispatch } from "react-redux";
@@ -44,8 +45,8 @@ function CheckoutForm() {
           total: Cart.total,
         })
       );
-      //clearCart();
-      //history.push("/");
+      dispatch(clearCart);
+      history.push("/");
     }
   }, [Cart.token]);
   // Handle real-time validation errors from the card Element.
