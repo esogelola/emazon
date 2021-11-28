@@ -1,7 +1,9 @@
 const initialState = {
   cart: [],
-
   total: 10,
+  address: null,
+  token: null,
+  errors: null,
 };
 export default function CartReducer(state = initialState, action) {
   let cartItem = null;
@@ -72,11 +74,37 @@ export default function CartReducer(state = initialState, action) {
 
         total: newTotal,
       };
-
-    case "CHECKOUT_CART":
-      console.log(state);
+    case "SET_QUANTITY":
+      cartItem = state.cart.find((item) => item.id === action.item.id);
+      cartItem.quantity = action.item.qty;
+      newTotal = state.total + cartItem.price * cartItem.quantity;
       return {
-        state,
+        ...state,
+
+        total: newTotal,
+      };
+
+    case "SET_ORDER_DETAILS":
+      return {
+        ...state,
+        address:
+          action.orderDetails.address == null
+            ? state.address
+            : action.orderDetails.address,
+        token:
+          action.orderDetails.token == null
+            ? state.token
+            : action.orderDetails.token,
+      };
+
+    case "SET_ERRORS":
+      return {
+        ...state,
+        errors: action.errors,
+      };
+    case "CHECKOUT_CART":
+      return {
+        ...state,
       };
 
     default:

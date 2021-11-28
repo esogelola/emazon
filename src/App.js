@@ -24,7 +24,8 @@ function App(props) {
 
   useEffect(() => {
     dispatch(getAllProducts());
-  }, [products]);
+    // console.log(products);
+  }, []);
 
   return (
     <Router>

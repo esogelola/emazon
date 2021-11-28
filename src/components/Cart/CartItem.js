@@ -3,10 +3,19 @@ import {
   subtractQuantity,
   addQuantity,
   removeItem,
+  setQuantity,
 } from "../../redux/actions/CartAction";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 function CartItem({ id, title, image, quantity, price }) {
   const dispatch = useDispatch();
+
+  const onQuantityChange = (e) => {
+    const qty = e.target.value;
+
+    if (e.target.value != null) {
+      dispatch(setQuantity({ id, qty }));
+    }
+  };
   return (
     <div className="flex items-center hover:bg-gray-100 -mx-8 px-6 py-5">
       <div className="flex w-2/5">
@@ -42,6 +51,7 @@ function CartItem({ id, title, image, quantity, price }) {
           className="mx-2 border text-center w-10"
           type="text"
           value={quantity}
+          onChange={onQuantityChange}
         />
         <button
           onClick={() => {

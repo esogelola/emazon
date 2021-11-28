@@ -1,5 +1,7 @@
 const initialState = {
   products: [],
+  featured: [],
+  loaded: false,
 };
 
 export default function BookReducer(state = initialState, action) {

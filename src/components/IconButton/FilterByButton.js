@@ -12,7 +12,7 @@ function FilterByButton({ filterBy, handleChange }) {
       <div>
         <Menu.Button className="inline-flex justify-center w-full shadow-sm  py-2 font-medium text-gray-700 hover:bg-gray-50 ">
           <svg
-            class="fill-current hover:text-black "
+            className="fill-current hover:text-black "
             xmlns="http://www.w3.org/2000/svg"
             width="24"
             height="24"
@@ -35,9 +35,9 @@ function FilterByButton({ filterBy, handleChange }) {
       >
         <Menu.Items className="origin-top-right absolute right-0  w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-10">
           <div className="py-1">
-            {filterBy.map((data) => {
+            {filterBy.map((data, key) => {
               return (
-                <Menu.Item>
+                <Menu.Item key={key}>
                   {({ active }) => (
                     <button
                       onClick={handleChange}
