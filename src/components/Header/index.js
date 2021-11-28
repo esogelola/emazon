@@ -99,9 +99,9 @@ function Header() {
                   Your Account
                 </p>
                 <div className="py-1">
-                  {accountOptions.map((data) => {
+                  {accountOptions.map((data, key) => {
                     return (
-                      <Menu.Item>
+                      <Menu.Item key={key}>
                         {({ active }) => (
                           <button
                             className={classNames(

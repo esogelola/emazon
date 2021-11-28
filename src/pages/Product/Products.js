@@ -65,7 +65,7 @@ export default function Products({ limit }) {
           handleSearch={handleSearchChange}
           filterBy={filterBy}
         />
-        <div class="container mx-auto flex items-center flex-wrap pt-4 pb-12">
+        <div className="container mx-auto flex items-center flex-wrap pt-4 pb-12">
           {filterProducts &&
             filterProducts.map((data, index) => {
               return index < 8 ? (
@@ -78,7 +78,7 @@ export default function Products({ limit }) {
                   price={data.price}
                 />
               ) : (
-                <button class="flex mx-auto mt-16 text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">
+                <button className="flex mx-auto mt-16 text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">
                   View All Products
                 </button>
               );

@@ -66,7 +66,8 @@ input CartItem {
   title: String
   image: String
   price: Float
-  amount: Int
+  quantity: Int
+  description: String
 }
 
 input ProcessOrderInput {

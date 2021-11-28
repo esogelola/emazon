@@ -1,13 +1,15 @@
 import React from "react";
-import { addToCart } from "../redux/actions/CartAction";
+import { checkoutCart } from "../redux/actions/CartAction";
 import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 import { CartItem } from "../components/Cart/index";
 // Redux
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 function Cart(props) {
   const Cart = useSelector((state) => state.Cart);
-  console.log(Cart);
+  const history = useHistory();
+
   return (
     <div className="container mx-auto mt-10">
       <div className="flex shadow-md my-10">
@@ -81,7 +83,7 @@ function Cart(props) {
           </div>
           <div className="py-10">
             <label
-              for="promo"
+              htmlFor="promo"
               className="font-semibold inline-block mb-3 text-sm uppercase"
             >
               Promo Code
@@ -102,7 +104,10 @@ function Cart(props) {
               <span>Total cost</span>
               <span>${Cart.total}</span>
             </div>
-            <button className="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full">
+            <button
+              className="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full"
+              onClick={() => history.push("/checkout")}
+            >
               Checkout
             </button>
           </div>

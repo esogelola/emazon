@@ -5,9 +5,10 @@ import { v4 as uuidv4 } from "uuid";
 
 export const checkout = async (orderDetails, cb) => {
   const payload = {
-    id: uuidv4,
+    id: uuidv4(),
     ...orderDetails,
   };
+  console.log(payload);
   try {
     await API.graphql(graphqlOperation(processOrder, { input: payload }));
     console.log("Order is successful");
@@ -33,7 +34,7 @@ export const getProducts = async () => {
       return !!product.featured;
     });
 
-    return { products: products, featured: featured };
+    return { products: products, featured: featured, loaded: true };
   } catch (err) {
     console.log(err);
   }

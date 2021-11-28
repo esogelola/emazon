@@ -9,14 +9,14 @@ import { useSelector } from "react-redux";
 function Home() {
   const { products } = useSelector((state) => state.Product);
 
-  console.log(products);
   // TODO: Only get 8 products from api, when the user goes to view all grab all
+  //TODO: Add Toast notification, when they add to cart
   return (
     <section>
-      <Hero featured={products.featured[0]} />
+      <Hero featured={products.featured} loaded={products.loaded} />
       <ListToolbar name={"featured"} />
-      <section class="bg-white py-8">
-        <div class="container mx-auto flex items-center flex-wrap pt-4 pb-12">
+      <section className="bg-white py-8">
+        <div className="container mx-auto flex items-center flex-wrap pt-4 pb-12">
           {products.featured &&
             products.featured.map((data, index) => {
               return index < 8 ? (
@@ -29,7 +29,7 @@ function Home() {
                   price={data.price}
                 />
               ) : (
-                <button class="flex mx-auto mt-16 text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">
+                <button className="flex mx-auto mt-16 text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">
                   View All Products
                 </button>
               );
