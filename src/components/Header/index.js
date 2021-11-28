@@ -1,21 +1,38 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Menu, Transition } from "@headlessui/react";
+
+import { logoutUser } from "../../redux/actions";
+import { useHistory } from "react-router-dom";
 // Redux
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 function Header() {
-  const Cart = useSelector((state) => state.Cart);
+  const { Cart, User } = useSelector((state) => state);
+  const history = useHistory();
+  const dispatch = useDispatch();
   function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
   }
+
+  // Extract to its own javascript file
   const accountOptions = [
-    "Account Settings",
-    "Your Orders",
-    "Your Recommendations",
-
-    "Sign Out",
+    { name: "Account Settings", onClick: "", disabled: true },
+    {
+      name: "Your Orders",
+      onClick: () => {
+        history.push("/orders");
+      },
+    },
+    { name: "Your Recommendations", onClick: "" },
+    { name: "Your Wishlist", onClick: "" },
+    {
+      name: "Sign Out",
+      onClick: async () => {
+        dispatch(logoutUser());
+      },
+    },
   ];
-
+  useEffect(() => {}, [User.userInfo]);
   return (
     <nav id="header" className="w-full z-30 top-0 py-1">
       <div className="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 px-6 py-3">
@@ -69,58 +86,73 @@ function Header() {
         </div>
 
         <div className="order-2 md:order-3 flex items-center" id="nav-content">
-          <Menu as="div" className="relative inline-block text-left">
-            <div>
-              <Menu.Button className="inline-flex justify-center w-full shadow-sm  py-2 font-medium text-gray-700 hover:bg-gray-50 ">
-                <svg
-                  className="fill-current hover:text-black"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                >
-                  <circle fill="none" cx="12" cy="7" r="3" />
-                  <path d="M12 2C9.243 2 7 4.243 7 7s2.243 5 5 5 5-2.243 5-5S14.757 2 12 2zM12 10c-1.654 0-3-1.346-3-3s1.346-3 3-3 3 1.346 3 3S13.654 10 12 10zM21 21v-1c0-3.859-3.141-7-7-7h-4c-3.86 0-7 3.141-7 7v1h2v-1c0-2.757 2.243-5 5-5h4c2.757 0 5 2.243 5 5v1H21z" />
-                </svg>
-              </Menu.Button>
-            </div>
-
-            <Transition
-              as={React.Fragment}
-              enter="transition ease-out duration-100"
-              enterFrom="transform opacity-0 scale-95"
-              enterTo="transform opacity-100 scale-100"
-              leave="transition ease-in duration-75"
-              leaveFrom="transform opacity-100 scale-100"
-              leaveTo="transform opacity-0 scale-95"
+          {User.userInfo == null ? (
+            <Link
+              className="inline-block no-underline hover:text-black hover:underline py-2  "
+              to="/login"
             >
-              <Menu.Items className="origin-top-right absolute right-0  w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-10">
-                <p className="flex  items-center w-full px-2 py-2 text-lg px-4 py-2  ">
-                  Your Account
-                </p>
-                <div className="py-1">
-                  {accountOptions.map((data, key) => {
-                    return (
-                      <Menu.Item key={key}>
-                        {({ active }) => (
-                          <button
-                            className={classNames(
-                              active
-                                ? "bg-gray-100 text-gray-900"
-                                : "text-gray-700",
-                              "group flex  items-center w-full px-2 py-2 text-sm px-4 py-2 text-sm"
-                            )}
-                          >
-                            {data}
-                          </button>
-                        )}
-                      </Menu.Item>
-                    );
-                  })}
-                </div>
-              </Menu.Items>
-            </Transition>
-          </Menu>
+              Login
+            </Link>
+          ) : (
+            <Menu as="div" className="relative inline-block text-left">
+              <div>
+                <Menu.Button className="inline-flex justify-center w-full shadow-sm  py-2 font-medium text-gray-700 hover:bg-gray-50 ">
+                  <svg
+                    className="fill-current hover:text-black"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                  >
+                    <circle fill="none" cx="12" cy="7" r="3" />
+                    <path d="M12 2C9.243 2 7 4.243 7 7s2.243 5 5 5 5-2.243 5-5S14.757 2 12 2zM12 10c-1.654 0-3-1.346-3-3s1.346-3 3-3 3 1.346 3 3S13.654 10 12 10zM21 21v-1c0-3.859-3.141-7-7-7h-4c-3.86 0-7 3.141-7 7v1h2v-1c0-2.757 2.243-5 5-5h4c2.757 0 5 2.243 5 5v1H21z" />
+                  </svg>
+                </Menu.Button>
+              </div>
+
+              <Transition
+                as={React.Fragment}
+                enter="transition ease-out duration-100"
+                enterFrom="transform opacity-0 scale-95"
+                enterTo="transform opacity-100 scale-100"
+                leave="transition ease-in duration-75"
+                leaveFrom="transform opacity-100 scale-100"
+                leaveTo="transform opacity-0 scale-95"
+              >
+                <Menu.Items className="origin-top-right absolute right-0  w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-10">
+                  <p className="flex  items-center w-full px-2 py-2 text-lg px-4 py-2  ">
+                    Your Account
+                  </p>
+                  <div className=" px-1 py-1">
+                    {accountOptions.map((data, key) => {
+                      return (
+                        <Menu.Item disabled={data.disabled} key={key}>
+                          {({ active }) => (
+                            <button
+                              className={classNames(
+                                active
+                                  ? "bg-gray-100 text-gray-900"
+                                  : "text-gray-700",
+                                data.disabled && "opacity-75",
+                                "group flex  items-center w-full px-2 py-2 text-sm px-4 py-2 text-sm"
+                              )}
+                              onClick={
+                                typeof data.onClick === "function"
+                                  ? data.onClick
+                                  : () => {}
+                              }
+                            >
+                              {data.name}
+                            </button>
+                          )}
+                        </Menu.Item>
+                      );
+                    })}
+                  </div>
+                </Menu.Items>
+              </Transition>
+            </Menu>
+          )}
 
           <Link
             className="pl-3 inline-block no-underline hover:text-black"

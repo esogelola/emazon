@@ -1,3 +1,3 @@
-import { getAllPosts } from "./TestAction";
 import { getAllProducts } from "./ProductAction";
-export { getAllPosts, getAllProducts };
+import { getCurrentUser, setAuthState, logoutUser } from "./UserAction";
+export { getCurrentUser, getAllProducts, setAuthState, logoutUser };

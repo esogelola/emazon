@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { BrowserRouter as Router, Switch } from "react-router-dom";
 // Redux
 import { useDispatch, useSelector } from "react-redux";
-import { getAllProducts } from "./redux/actions";
+import { getAllProducts, getCurrentUser } from "./redux/actions";
 
 // Amplify
 import Amplify from "aws-amplify";
@@ -20,12 +20,10 @@ Amplify.configure(awsExports);
 
 function App(props) {
   const dispatch = useDispatch();
-  const { products } = useSelector((state) => state.Product);
-
   useEffect(() => {
     dispatch(getAllProducts());
-    // console.log(products);
-  }, []);
+    dispatch(getCurrentUser());
+  });
 
   return (
     <Router>

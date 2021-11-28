@@ -10,7 +10,8 @@ import Checkout from "./pages/Checkout";
 import Error from "./pages/Error";
 import Products from "./pages/Product/Products";
 import ProductDetails from "./pages/Product/Details";
-
+import Orders from "./pages/Orders";
+import Login from "./pages/Login";
 const routes = [
   {
     exact: true,
@@ -38,7 +39,14 @@ const routes = [
     path: "/admin",
     component: Admin,
   },
-
+  {
+    path: "/orders",
+    component: Orders,
+  },
+  {
+    path: "/login",
+    component: Login,
+  },
   {
     path: "*",
     component: Error,

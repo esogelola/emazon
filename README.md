@@ -15,7 +15,7 @@ Future updates:
   <li>User reviews on products</li>
   <li>User wishlist on products</li>
   <li><del>Persist cart state </del>  Does not persist in database</li>
-  <li>Save more user data</li>
+  <li><del>Save more user data</del></li>
   <li>Product Company creation, allow certified "companies"  to upload their products.</li>
 </ul>
 ## Project Screen Shot(s)

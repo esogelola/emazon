@@ -4,6 +4,9 @@ import { API, graphqlOperation, Storage, Auth } from "aws-amplify";
 import { AmplifyAuthenticator, AmplifySignOut } from "@aws-amplify/ui-react";
 import { createProduct } from "../api/graphql/mutations";
 import config from "../aws-exports";
+import { onAuthUIStateChange } from "@aws-amplify/ui-components";
+import { useDispatch, useSelector } from "react-redux";
+import { getCurrentUser } from "../redux/actions";
 
 const {
   aws_user_files_s3_bucket_region: region,
@@ -11,6 +14,9 @@ const {
 } = config;
 
 function Admin() {
+  const User = useSelector((state) => state.User);
+  const dispatch = useDispatch();
+  const [userGroup, setUserGroup] = useState(null);
   const [image, setImage] = useState(null);
   const [productDetails, setProductDetails] = useState({
     title: "",
@@ -42,9 +48,7 @@ function Admin() {
       console.log("error creating producct:", err);
     }
   };
-  Auth.currentAuthenticatedUser().then((data) =>
-    console.log(data.signInUserSession.accessToken.payload["cognito:groups"])
-  );
+
   const handleImageUpload = async (e) => {
     e.preventDefault();
     // Can add video support later
@@ -67,9 +71,20 @@ function Admin() {
       console.log(err);
     }
   };
+  React.useEffect(() => {
+    Auth.currentAuthenticatedUser()
+      .then((data) => {
+        setUserGroup(
+          data.signInUserSession.accessToken.payload["cognito:groups"]
+        );
+      })
+      .catch(() => setUserGroup(null));
 
-  // Break these components later
-
+    return onAuthUIStateChange((nextAuthState, authData) => {
+      dispatch(getCurrentUser());
+    });
+  }, []);
+  if (userGroup === "null") return <p>Restricted access to this page</p>;
   return (
     <section className="">
       <AmplifyAuthenticator>

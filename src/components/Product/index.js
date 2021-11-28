@@ -15,7 +15,7 @@ function Product({ id, image, title, price, description }) {
       </Link>
       <div className="pt-3 flex items-center justify-between">
         <div>
-          <p className="text-md text-gray-900">{title}</p>
+          <p className="text-md text-gray-900">{title.slice(0, 25)}...</p>
           <p className="text-sm font-medium text-gray-700">
             {description.slice(0, 30)}...
           </p>

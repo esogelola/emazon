@@ -45,7 +45,7 @@ function CheckoutForm() {
           total: Cart.total,
         })
       );
-      dispatch(clearCart);
+      dispatch(clearCart());
       history.push("/");
     }
   }, [Cart.token]);
@@ -95,7 +95,11 @@ function CheckoutForm() {
         />
 
         <div className="stripe-section">
-          <label htmlFor="stripe-element"> Credit or debit card </label>
+          <label htmlFor="stripe-element">
+            {" "}
+            Credit or debit card (use 4242 4242 4242 4242) everything else
+            random{" "}
+          </label>
           <CardElement
             id="stripe-element"
             options={CARD_ELEMENT_OPTIONS}

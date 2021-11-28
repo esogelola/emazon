@@ -4,7 +4,7 @@ const initialState = {
   loaded: false,
 };
 
-export default function BookReducer(state = initialState, action) {
+export default function ProductReducer(state = initialState, action) {
   switch (action.type) {
     case "GET_PRODUCTS":
       return {
