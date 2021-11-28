@@ -14,7 +14,7 @@ Future updates:
   <li>User can view their orders, Admin can view all orders</li>
   <li>User reviews on products</li>
   <li>User wishlist on products</li>
-  <li>~~ Persist cart state ~~ Does not persist in database</li>
+  <li><del>Persist cart state </del>  Does not persist in database</li>
   <li>Save more user data</li>
   <li>Product Company creation, allow certified "companies"  to upload their products.</li>
 </ul>
